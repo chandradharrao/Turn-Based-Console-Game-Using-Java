@@ -1,9 +1,21 @@
 ,Name,Type,Power,PP
-1,Water Gun,Water,40,25
-2,Liquidation,Water,85,10
-3,Steam Eruption,Water,110,5
-4,Soak,Water,35,20
-5,Oceanic Operetta,Water,195,5
-6,Water Shuriken,Water,15,20
-7,Razor Shell,Water,75,10
-8,Hydro Vortex,Water,90,10
+20,Aqua Jet,Water,40,20
+21,Aqua Ring,Water,-,20
+22,Aqua Tail,Water,90,10
+64,Bouncy Bubble,Water,90,15
+68,Brine,Water,65,10
+70,Bubble,Water,40,30
+71,Bubble Beam,Water,65,20
+91,Clamp,Water,35,10
+113,Crabhammer,Water,100,10
+137,Dive,Water,80,10
+297,Hydro Cannon,Water,150,5
+298,Hydro Pump,Water,110,5
+299,Hydro Vortex,Water,-,1
+349,Liquidation,Water,85,10
+402,Muddy Water,Water,90,10
+419,Oceanic Operetta,Water,195,1
+420,Octazooka,Water,65,10
+423,Origin Pulse,Water,110,10
+485,Rain Dance,Water,-,5
+488,Razor Shell,Water,75,10

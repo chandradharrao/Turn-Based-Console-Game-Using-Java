@@ -1,9 +1,21 @@
 ,Name,Type,Power,PP
-1,Stun Spore,Grass,65,30
-2,Petal Blizzard,Grass,90,15
-3,Petal Dance,Grass,120,10
-4,Strength Sap,Grass,75,10
-5,Spiky Shield,Grass,80,10
-6,Trop Kick,Grass,70,15
-7,Cotton Guard,Grass,35,10
-8,Grass Whistle,Grass,40,15
+1,Absorb,Grass,20,25
+24,Aromatherapy,Grass,-,5
+55,Bloom Doom,Grass,-,1
+77,Bullet Seed,Grass,25,30
+109,Cotton Guard,Grass,-,10
+110,Cotton Spore,Grass,-,40
+177,Energy Ball,Grass,90,10
+226,Forest's Curse,Grass,-,20
+231,Frenzy Plant,Grass,150,5
+245,Giga Drain,Grass,75,10
+251,Grass Knot,Grass,-,20
+252,Grass Pledge,Grass,80,10
+253,Grass Whistle,Grass,-,15
+254,Grassy Terrain,Grass,-,10
+294,Horn Leech,Grass,75,10
+321,Ingrain,Grass,-,20
+337,Leaf Blade,Grass,90,15
+338,Leaf Storm,Grass,130,5
+339,Leaf Tornado,Grass,65,10
+340,Leafage,Grass,40,40

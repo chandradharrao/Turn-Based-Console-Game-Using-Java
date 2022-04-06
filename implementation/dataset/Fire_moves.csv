@@ -1,9 +1,21 @@
 ,Name,Type,Power,PP
-1,Will-O-Wisp,Fire,50,15
-2,Flame Burst,Fire,70,15
-3,Mind Blown,Fire,150,5
-4,Searing Shot,Fire,100,5
-5,Flamethrower,Fire,90,15
-6,Shell Trap,Fire,150,5
-7,Incinerate,Fire,60,15
-8,Fire Spin,Fire,35,15
+51,Blast Burn,Fire,150,5
+52,Blaze Kick,Fire,85,10
+56,Blue Flare,Fire,130,5
+78,Burn Up,Fire,130,5
+173,Ember,Fire,40,25
+179,Eruption,Fire,150,5
+194,Fiery Dance,Fire,80,10
+196,Fire Blast,Fire,110,5
+197,Fire Fang,Fire,65,15
+198,Fire Lash,Fire,80,15
+199,Fire Pledge,Fire,80,10
+200,Fire Punch,Fire,75,15
+201,Fire Spin,Fire,35,15
+205,Flame Burst,Fire,70,15
+206,Flame Charge,Fire,50,20
+207,Flame Wheel,Fire,60,25
+208,Flamethrower,Fire,90,15
+209,Flare Blitz,Fire,120,15
+238,Fusion Flare,Fire,100,5
+281,Heat Crash,Fire,-,10
