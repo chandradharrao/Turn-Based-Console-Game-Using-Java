@@ -3,7 +3,7 @@ public class Opponent {
     public Badge theBadge;
 
     Opponent(){
-        myTeam = new Team();
+        myTeam = new Team()
     }
 
     public void giveBadge(Player to){

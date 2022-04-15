@@ -1,21 +1,77 @@
-import java.io.Console;
-import java.util.List;
+//create Pokemon class
 
-class Pokemon{
-    private int health;
-    private int XP;
-    private int ID;
-    private String Name;
-    private String type;
+/*
+Each Pokemon should have a unique zero based id
+Team.java has an array with index===pokemon.id
+If user can access pokemon with id i,then arraavailablePokemons[i]=True
 
-    Moves allMoves[];
+Shift EvolvePokemon() to Team because the player has the datastructure needed
+for this method, leads to low coupling
+XP can of pokemon can be obtained using getXP()
+*/
 
-    @Override
-    public String toString() {
-        //display the pokemon
+public class Pokemon{
+    protected int health;
+    protected int maxHealth;
+    protected int XP;
+    protected int ID;
+    protected String Name;
+    protected String type;
+    public Moves moves;
+
+    Pokemon(int ID, String Name, int maxHealth, String type, int XP){
+        this.ID = ID;
+        this.Name = Name;
+        this.maxHealth = maxHealth;
+        this.health= maxHealth;
+        this.type = type;
+        this.XP = XP;
+    }   
+
+    //returns the health of the pokemon
+    public int getHealth(){
+        return health;
     }
 
-    Pokemon(String id){
-        
+    //returns experience points
+    public int getXP(){
+        return XP;
+    }
+
+    //returns ID of pokemon -  zero based index
+    public int getID(){
+        return ID;
+    }
+
+    //returns name of pokemon
+    public String getName(){
+        return Name;
+    }
+
+    //returns type of pokemon
+    public String getType(){
+        return type;
+    }
+
+    //sets the health of the pokemon during battle
+    public void changeHealth(int health){
+        this.health=this.health-health;
+    }
+
+    //sets the experience points of the pokemon
+    public void changeXP(int XP){
+        this.XP=this.XP+XP;
+    }
+
+    //display  a single Pokemon
+    @Override
+    public String toString() {
+        String details = "";
+        details+=this.Name+"\n"+this.type+"\n"+this.health+"\n"+this.XP+"\n";
+        return details;
+    }
+
+    public void healMe(){
+        this.health = maxHealth;
     }
 }

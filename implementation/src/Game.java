@@ -3,37 +3,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Game{
+    Database db;
+    Player player;
+
     Game(){
-        Database db = new Database();
-        Player player = new Player();
+        db = new Database();
+        player = new Player(db.numPokemons,db.starterIDs);
         Opponent opponent = new Opponent();
     }
 
-    public static void displayPokemons(List<Pokemon>allPokemons,int constraint){
-        int i =0;
-        for (Pokemon p : allPokemons) {
-            if(p.XP <= constraint){
-                System.out.println(i++);
-                System.out.println(p);
-            }
-        }
-    }
-
-    public Pokemon choosePokemon(List<Pokemon> allPokemons,int constraint){
-        //display the pokemons
-        displayPokemons(allPokemons, constraint);
-
+    public void choosePokemons(){
         //ask user to choose between displayed pokemon
-        while(true){
+        while(player.myTeam.teamSize<6){
             System.out.println("Enter the Pokemon number");
             int pnum = Integer.parseInt(System.console().readLine());
 
-            if(pnum<allPokemons.size()){
-                return allPokemons[pnum];
-            }
-            else{
-                System.out.println("Choose correct pokemon number");
+            boolean res = player.myTeam.addPokemon(pnum);
+            if(!res){
+                System.out.println("Not allowed to choose that pokemon yet!");
             }
         }
+
+        //after choosing 6 pokemons
+        player.myTeam.viewTeam();
     }
 }
