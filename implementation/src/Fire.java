@@ -1,6 +1,6 @@
 public class Fire extends Pokemon{   
     Fire(int ID, String Name, int health,int XP){
-        super(ID, Name, health, "Fire", XP);
+        super(ID, Name, health, 0, XP);
         this.moves = new Moves();
     }
 

@@ -1,6 +1,6 @@
 public class Grass extends Pokemon{
     Grass(int ID, String Name, int health, int XP){
-        super(ID, Name, health,"Grass", XP);
+        super(ID, Name, health,2, XP);
     }
 
     Moves grassMoves= new Moves();

@@ -16,10 +16,10 @@ public class Pokemon{
     protected int XP;
     protected int ID;
     protected String Name;
-    protected String type;
+    protected int type;
     public Moves moves;
 
-    Pokemon(int ID, String Name, int maxHealth, String type, int XP){
+    Pokemon(int ID, String Name, int maxHealth, int type, int XP){
         this.ID = ID;
         this.Name = Name;
         this.maxHealth = maxHealth;
@@ -49,8 +49,22 @@ public class Pokemon{
     }
 
     //returns type of pokemon
-    public String getType(){
+    public int getType(){
         return type;
+    }
+
+    //mapping b/w types
+    public static String getType(int type){
+        switch (type){
+            case 0:
+                return "Fire";
+            case 1:
+                return "Water";
+            case 2:
+                return "Grass";
+            default:
+                return "None";
+        }
     }
 
     //sets the health of the pokemon during battle
@@ -74,4 +88,7 @@ public class Pokemon{
     public void healMe(){
         this.health = maxHealth;
     }
+
+    //display the list of moves available in the pokemon
+    
 }

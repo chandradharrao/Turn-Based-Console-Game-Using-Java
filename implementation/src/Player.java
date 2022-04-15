@@ -7,7 +7,7 @@ public class Player {
     //players badges gathered
     public List<Badge> myBadges;
 
-    Player(int numPokemons,int[] starterPokeIDs,Database db){
-        myTeam = new Team(numPokemons,starterPokeIDs,db);
+    Player(Database db){
+        myTeam = new Team(db);
     }
 }
