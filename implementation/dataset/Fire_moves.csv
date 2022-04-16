@@ -1,21 +1,21 @@
-,Name,Type,Power,PP
-51,Blast Burn,Fire,150,5
-52,Blaze Kick,Fire,85,10
-56,Blue Flare,Fire,130,5
-78,Burn Up,Fire,130,5
-173,Ember,Fire,40,25
-179,Eruption,Fire,150,5
-194,Fiery Dance,Fire,80,10
-196,Fire Blast,Fire,110,5
-197,Fire Fang,Fire,65,15
-198,Fire Lash,Fire,80,15
-199,Fire Pledge,Fire,80,10
-200,Fire Punch,Fire,75,15
-201,Fire Spin,Fire,35,15
-205,Flame Burst,Fire,70,15
-206,Flame Charge,Fire,50,20
-207,Flame Wheel,Fire,60,25
-208,Flamethrower,Fire,90,15
-209,Flare Blitz,Fire,120,15
-238,Fusion Flare,Fire,100,5
-281,Heat Crash,Fire,-,10
+ID,Name,Type,Power,PP
+1,Blast Burn,fire,150,5
+2,Blaze Kick,fire,85,10
+3,Blue Flare,fire,130,5
+4,Burn Up,fire,130,5
+5,Ember,fire,40,25
+6,Eruption,fire,150,5
+7,Fiery Dance,fire,80,10
+8,Fire Blast,fire,110,5
+9,Fire Fang,fire,65,15
+10,Fire Lash,fire,80,15
+11,Fire Pledge,fire,80,10
+12,Fire Punch,fire,75,15
+13,Fire Spin,fire,35,15
+14,Flame Burst,fire,70,15
+15,Flame Charge,fire,50,20
+16,Flame Wheel,fire,60,25
+17,Flamethrower,fire,90,15
+18,Flare Blitz,fire,120,15
+19,Fusion Flare,fire,100,5
+20,Heat Crash,fire,25,10

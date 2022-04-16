@@ -1,21 +1,21 @@
-,Name,Type,Power,PP
-1,Absorb,Grass,20,25
-24,Aromatherapy,Grass,-,5
-55,Bloom Doom,Grass,-,1
-77,Bullet Seed,Grass,25,30
-109,Cotton Guard,Grass,-,10
-110,Cotton Spore,Grass,-,40
-177,Energy Ball,Grass,90,10
-226,Forest's Curse,Grass,-,20
-231,Frenzy Plant,Grass,150,5
-245,Giga Drain,Grass,75,10
-251,Grass Knot,Grass,-,20
-252,Grass Pledge,Grass,80,10
-253,Grass Whistle,Grass,-,15
-254,Grassy Terrain,Grass,-,10
-294,Horn Leech,Grass,75,10
-321,Ingrain,Grass,-,20
-337,Leaf Blade,Grass,90,15
-338,Leaf Storm,Grass,130,5
-339,Leaf Tornado,Grass,65,10
-340,Leafage,Grass,40,40
+ID,Name,Type,Power,PP
+1,Absorb,grass,20,25
+2,Aromatherapy,grass,25,5
+3,Bloom Doom,grass,25,1
+4,Bullet Seed,grass,25,30
+5,Cotton Guard,grass,25,10
+6,Cotton Spore,grass,25,40
+7,Energy Ball,grass,90,10
+8,Forest's Curse,grass,25,20
+9,Frenzy Plant,grass,150,5
+10,Giga Drain,grass,75,10
+11,Grass Knot,grass,25,20
+12,Grass Pledge,grass,80,10
+13,Grass Whistle,grass,25,15
+14,Grassy Terrain,grass,25,10
+15,Horn Leech,grass,75,10
+16,Ingrain,grass,25,20
+17,Leaf Blade,grass,90,15
+18,Leaf Storm,grass,130,5
+19,Leaf Tornado,grass,65,10
+20,Leafage,grass,40,40

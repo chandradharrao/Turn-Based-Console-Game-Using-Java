@@ -1,21 +1,21 @@
-,Name,Type,Power,PP
-20,Aqua Jet,Water,40,20
-21,Aqua Ring,Water,-,20
-22,Aqua Tail,Water,90,10
-64,Bouncy Bubble,Water,90,15
-68,Brine,Water,65,10
-70,Bubble,Water,40,30
-71,Bubble Beam,Water,65,20
-91,Clamp,Water,35,10
-113,Crabhammer,Water,100,10
-137,Dive,Water,80,10
-297,Hydro Cannon,Water,150,5
-298,Hydro Pump,Water,110,5
-299,Hydro Vortex,Water,-,1
-349,Liquidation,Water,85,10
-402,Muddy Water,Water,90,10
-419,Oceanic Operetta,Water,195,1
-420,Octazooka,Water,65,10
-423,Origin Pulse,Water,110,10
-485,Rain Dance,Water,-,5
-488,Razor Shell,Water,75,10
+ID,Name,Type,Power,PP
+1,Aqua Jet,water,40,20
+2,Aqua Ring,water,25,20
+3,Aqua Tail,water,90,10
+4,Bouncy Bubble,water,90,15
+5,Brine,water,65,10
+6,Bubble,water,40,30
+7,Bubble Beam,water,65,20
+8,Clamp,water,35,10
+9,Crabhammer,water,100,10
+10,Dive,water,80,10
+11,Hydro Cannon,water,150,5
+12,Hydro Pump,water,110,5
+13,Hydro Vortex,water,25,1
+14,Liquidation,water,85,10
+15,Muddy Water,water,90,10
+16,Oceanic Operetta,water,195,1
+17,Octazooka,water,65,10
+18,Origin Pulse,water,110,10
+19,Rain Dance,water,25,5
+20,Razor Shell,water,75,10
