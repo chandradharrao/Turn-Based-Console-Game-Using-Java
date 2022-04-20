@@ -7,6 +7,10 @@ public class Battle {
     Player player;
     Database db;
     Opponent currOpponent;
+    HealCentre nurseJoy;
+    //first time when game starts,ask player to choose team. Else if he is restarting level,then dont ask to choose team.
+    Boolean gameStart = false; 
+    Boolean run = true; //for while loop to check if players team has lost all health or PP
 
     //amount of damage induced
     static int[][] damageMatrix = {
@@ -19,6 +23,8 @@ public class Battle {
         //create all gym leaders and fill in the allOpponents array
         db = new Database();
         player = new Player(db);
+        nurseJoy = new HealCentre();
+        gameStart = true;
 
         //create 3 gym leaders
         allOpponents.add(new Opponent(db, 0,"Maylene"));
@@ -28,6 +34,7 @@ public class Battle {
     
     public void EndGame(){
         System.out.println("Game Over");
+        run = false;
     }
 
     public void createTeam(){
@@ -61,10 +68,13 @@ public class Battle {
     }
 
     public void StartBattle(){
-        this.createTeam();
+        if(gameStart){
+            gameStart= false;
+            this.createTeam();
+        }
         this.chooseOpponent();
 
-        while(true){
+        while(run){
             //display team
             System.out.println("Your team details:");
             player.myTeam.viewTeam();
@@ -79,10 +89,8 @@ public class Battle {
             player.myTeam.equipPokemon(currPoke);
             
             //display move of current pokemon
-            for(int i = 0;i<player.myTeam.teamSize;i++){
-                System.out.print(player.myTeam.myPokemons.get(player.myTeam.currPokemon));
-                System.out.print(player.myTeam.myPokemons.get(i).moves);
-            }
+            System.out.print(player.myTeam.myPokemons.get(player.myTeam.currPokemon));
+            System.out.print(player.myTeam.myPokemons.get(player.myTeam.currPokemon).moves);
 
             //ask player to choose move and attack
             System.out.println("Choose move:");
@@ -93,7 +101,21 @@ public class Battle {
             Boolean didOpponentLoose = currOpponent.attackPlayer(player);
             if(didOpponentLoose){
                 System.out.println("You win!!");
+                currOpponent.giveBadge(player);
+                System.out.println("Do you want to heal your pokemon before next battle? Press Y or N");
+                char doHeal = System.console().readLine().charAt(0);
+                
+                if(doHeal=='Y'){
+                    nurseJoy.healWork(player.myTeam);
+                }
                 break;
+            }
+            else{
+                //opponent didnt loose,doesnt mean player lost
+                if(player.myTeam.didTeamLoose()){
+                    System.out.println("You lost :(");
+                    this.EndGame();
+                }
             }
         }
     }

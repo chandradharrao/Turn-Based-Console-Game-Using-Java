@@ -16,6 +16,7 @@ public class Opponent {
     }
 
     public void giveBadge(Player to){
+        generateBadge();
         to.myBadges.add(theBadge);
     }
 

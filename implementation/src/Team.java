@@ -74,4 +74,44 @@ public class Team {
             System.out.println("Not enough PP :(");
         }
     }
+
+    //check if Team has lost
+    public Boolean didTeamLoose(){
+        //for all pokemons
+        Boolean didLoose = true;
+        for(int i = 0;i<teamSize;i++){
+            //even if one pokemon has health and it has PP for some move
+            Pokemon currPoke = this.myPokemons.get(i);
+
+            if(currPoke.health>0){
+                //check if any move has acceptable PP
+                Boolean validMoves = false;
+                for(int j = 0;j<currPoke.moves.moves.size();j++){
+                    if(currPoke.moves.moves.get(j).pp>0){
+                        validMoves = true;
+                        break;
+                    }
+                }
+                if(validMoves == true){
+                    didLoose = false;
+                    break;
+                }
+            }
+        }
+        return didLoose;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
