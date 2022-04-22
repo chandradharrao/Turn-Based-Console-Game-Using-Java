@@ -48,11 +48,10 @@ public class Moves{
     //print the list of moves
     @Override
     public String toString() {
-        String movesDesc = "+------MOVES LIST------+\n";
+        String movesDesc = "";
         for (Move move : theMoves) {
             movesDesc = "Move: "+ move.name + "\n" + "PP: " + move.pp + "\n"+ "Damage: " + move.damage + "\n";
         }
-        movesDesc += "+--END OF MOVES LIST------+\n";
         return movesDesc;
     }
 }

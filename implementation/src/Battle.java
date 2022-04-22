@@ -11,6 +11,7 @@ public class Battle {
     //first time when game starts,ask player to choose team. Else if he is restarting level,then dont ask to choose team.
     Boolean gameStart = false; 
     Boolean run = true; //for while loop to check if players team has lost all health or PP
+    Boolean gameLoop = true; //run the entire game in a loop
 
     //amount of damage induced
     static int[][] damageMatrix = {
@@ -26,6 +27,7 @@ public class Battle {
         nurseJoy = new HealCentre();
         allOpponents = new ArrayList<Opponent>();
         gameStart = true;
+        
 
         //create 3 gym leaders
         allOpponents.add(new Opponent(db, 0,"Maylene"));
@@ -36,6 +38,7 @@ public class Battle {
     public void EndGame(){
         System.out.println("Game Over");
         run = false;
+        gameLoop = false;
     }
 
     public void createTeam(){
@@ -70,19 +73,13 @@ public class Battle {
         }
     }
 
-    public void StartBattle(){
-        if(gameStart){
-            gameStart= false;
-            this.createTeam();
-        }
-        this.chooseOpponent();
-
+    private void fightOpponent(){
         while(run){
             //display team
             System.out.println("Your team details:");
             player.myTeam.viewTeam();
 
-            System.out.println("Your opponent team details:");
+            System.out.println(currOpponent.name+ "'s team details:");
             currOpponent.myTeam.viewTeam();
 
 
@@ -92,8 +89,10 @@ public class Battle {
             player.myTeam.equipPokemon(currPoke);
             
             //display move of current pokemon
+            System.out.println("+------MOVES LIST------+");
             System.out.print(player.myTeam.myPokemons.get(player.myTeam.currPokemon));
             System.out.print(player.myTeam.myPokemons.get(player.myTeam.currPokemon).moves);
+            System.out.println("+------END OF LIST------+");
 
             //ask player to choose move and attack
             System.out.println("Choose move:");
@@ -111,6 +110,9 @@ public class Battle {
                 if(doHeal=='Y'){
                     nurseJoy.healWork(player.myTeam);
                 }
+                else{
+                    System.out.println("Gotta admire your confidence to go with a wounded Team!");
+                }
                 break;
             }
             else{
@@ -120,6 +122,18 @@ public class Battle {
                     this.EndGame();
                 }
             }
+        }
+    }
+
+    public void StartBattle(){
+        if(gameStart){
+            gameStart= false;
+            this.createTeam();
+        }
+        while(gameLoop){
+            this.chooseOpponent();
+            fightOpponent();
+            System.out.println("Get Ready for your next battle...");
         }
     }
 }
