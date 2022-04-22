@@ -9,6 +9,9 @@ public class Opponent {
         myTeam = new Team(db);
         this.level = level;
         this.name = name;
+
+        //create opponent's team
+        makeTeam();
     }
 
     public void generateBadge(){
@@ -27,6 +30,13 @@ public class Opponent {
         return details;
     }
 
+    private void makeTeam(){
+        //create a random team of 6 pokemons (consider repetion too)
+        for(int i = 0;i<6;i++){
+            myTeam.addPokemon(0+(int)(Math.random()*(29-0)+1));
+        }
+    }
+
     public boolean attackPlayer(Player player){
         //check if curr pokemon has enough health
         boolean foundPokemon = false;
@@ -38,7 +48,7 @@ public class Opponent {
                 myTeam.equipPokemon(j);
                 //find move with enough pp and do damage
                 boolean foundMove = false;
-                for(int i = 0;i<myPoke.moves.moves.size();i++){
+                for(int i = 0;i<myPoke.moves.theMoves.size();i++){
                     if(myPoke.moves.getPP(i)>0){
                         foundMove = true;
                         myTeam.useMove(i, player.myTeam);

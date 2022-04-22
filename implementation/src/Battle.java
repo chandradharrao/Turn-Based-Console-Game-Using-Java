@@ -1,5 +1,5 @@
+import java.util.ArrayList;
 import java.util.List;
-import java.io.*;
 
 public class Battle {
     Game newGame;
@@ -24,6 +24,7 @@ public class Battle {
         db = new Database();
         player = new Player(db);
         nurseJoy = new HealCentre();
+        allOpponents = new ArrayList<Opponent>();
         gameStart = true;
 
         //create 3 gym leaders
@@ -38,6 +39,8 @@ public class Battle {
     }
 
     public void createTeam(){
+        //Display all the pokemons available to the user
+        
         //ask user to choose between displayed pokemon
         while(player.myTeam.teamSize<6){
             System.out.println("Enter the Pokemon number");

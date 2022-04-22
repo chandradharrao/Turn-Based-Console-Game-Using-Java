@@ -17,7 +17,10 @@ public class Team {
     boolean[] availablePokemons;
 
     Team(Database db){
+        this.db = db;
+
         teamSize = 0;
+        myPokemons = new ArrayList<Pokemon>();
 
         numPokemons = db.numPokemons;
         starterPokeIDs = db.starterIDs;
@@ -35,8 +38,11 @@ public class Team {
     }
 
     public boolean addPokemon(int i){
+        Logger.print("is m_pokemon list null? "+myPokemons==null?"True":"False");
+
         if(availablePokemons[i]){
-            myPokemons.add(db.getPokemon(i));
+            Pokemon poke = db.getPokemon(i);
+            myPokemons.add(poke);
             teamSize+=1;
             return true;
         }else{
@@ -45,9 +51,12 @@ public class Team {
     }
 
     public void viewTeam(){
+        System.out.println("+---------------+");
         for(Pokemon poke: myPokemons){
             System.out.println(poke.toString());
+            System.out.println("-----------------");
         }
+        System.out.println("+---------------+");
     }
 
     //get total team XP so that some pokemons can be made avaialbe if threshold of needed XP is crossed
@@ -117,8 +126,8 @@ public class Team {
             if(currPoke.health>0){
                 //check if any move has acceptable PP
                 Boolean validMoves = false;
-                for(int j = 0;j<currPoke.moves.moves.size();j++){
-                    if(currPoke.moves.moves.get(j).pp>0){
+                for(int j = 0;j<currPoke.moves.theMoves.size();j++){
+                    if(currPoke.moves.theMoves.get(j).pp>0){
                         validMoves = true;
                         break;
                     }

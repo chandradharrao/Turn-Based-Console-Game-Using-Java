@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 //create Pokemon class
 
 /*
@@ -26,6 +28,12 @@ public class Pokemon{
         this.health= maxHealth;
         this.type = type;
         this.XP = XP;
+
+        //add moves for pokemon --only for testing purposes--
+        this.moves = new Moves();
+        this.moves.theMoves = new ArrayList<Move>();
+        for(int i = 0;i<4;i++)
+            moves.theMoves.add(new Move("Move"+i, i+3, i+7));
     }   
 
     //returns the health of the pokemon
@@ -80,9 +88,7 @@ public class Pokemon{
     //display  a single Pokemon
     @Override
     public String toString() {
-        String details = "";
-        details+=this.Name+"\n"+this.type+"\n"+this.health+"\n"+this.XP+"\n";
-        return details;
+        return "Name:"+this.Name+"\n"+"Type:"+getType(this.type)+"\n"+"Health:"+this.health+"\n"+"XP:"+this.XP+"\n";
     }
 
     public void healMe(){
