@@ -119,6 +119,23 @@ public class Team {
         }
     }
 
+    //fetch all pokemons in the database avaialble to the user
+    public void listAvailablePokes(){
+        System.out.println("Choose From:");
+        String alignmentFormat = "|%-10s|%-5s|%-6d|%-3d|%n";
+
+        System.out.format("+----------+-----+------+---+%n");
+        System.out.format("|Name      |Type |Health|XP |%n");
+        System.out.format("+----------+-----+------+---+%n");
+        for(int i = 0;i<availablePokemons.length;i++){
+            if(availablePokemons[i]){
+                Pokemon poke = db.getPokemon(i);
+                System.out.format(alignmentFormat,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
+            }
+        }
+        System.out.format("+----------+-----+------+---+%n");
+    }
+
     //check if Team has lost
     public Boolean didTeamLoose(){
         //for all pokemons

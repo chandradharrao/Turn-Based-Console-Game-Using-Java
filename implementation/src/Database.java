@@ -25,5 +25,4 @@ public class Database {
         Logger.print("Retrieveing Pokemon: "+all_Pokemons.get(indx).Name);
         return all_Pokemons.get(indx);
     }
-
 }

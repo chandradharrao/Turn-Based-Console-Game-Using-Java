@@ -43,6 +43,7 @@ public class Battle {
 
     public void createTeam(){
         //Display all the pokemons available to the user
+        player.myTeam.listAvailablePokes();
         
         //ask user to choose between displayed pokemon
         while(player.myTeam.teamSize<6){
@@ -96,22 +97,31 @@ public class Battle {
             player.myTeam.equipPokemon(currPoke);
             
             //display move of current pokemon
-            System.out.println("+------MOVES LIST------+");
-            System.out.print(player.myTeam.myPokemons.get(player.myTeam.currPokemon));
-            System.out.print(player.myTeam.myPokemons.get(player.myTeam.currPokemon).moves);
-            System.out.println("+------END OF LIST------+");
+            Pokemon poke = player.myTeam.myPokemons.get(player.myTeam.currPokemon);
+            System.out.println("Moves of "+poke.Name+" are:");
+            String alignment = "|%-9s|%-4d|%-6d|%n";
+            System.out.format("+---------+----+------+%n");
+            System.out.format("|Name     |PP  |Damage|%n");
+            System.out.format("+---------+----+------+%n");
+            for (Move move : poke.moves.theMoves) {
+                System.out.format(alignment,move.name,move.pp,move.damage);
+            }
+            System.out.format("+---------+----+------+%n");
 
             //ask player to choose move and attack
-            System.out.println("Choose move:");
+            System.out.println("Choose a move:");
             int move = Integer.parseInt(System.console().readLine());
             player.myTeam.useMove(move,currOpponent.myTeam);
 
             //opponent attacks player
             Boolean didOpponentLoose = currOpponent.attackPlayer(player);
             if(didOpponentLoose){
-                System.out.println("You win!!");
+                System.out.format("+---------------------------+%n");
+                String alignment1 = "|%-27s|%n";
+                System.out.format(alignment1,Color.ANSI_GREEN+"You Win"+Color.ANSI_RESET);
+                System.out.format("+---------------------------+%n");
                 currOpponent.giveBadge(player);
-                System.out.println("Do you want to heal your pokemon before next battle? Press Y or N");
+                System.out.println("Do you want to heal your pokemon before next battle?\nPress Y or N");
                 char doHeal = System.console().readLine().charAt(0);
                 
                 if(doHeal=='Y'){

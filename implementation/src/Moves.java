@@ -44,14 +44,4 @@ public class Moves{
             move.pp = move.maxPP;
         }
     }
-
-    //print the list of moves
-    @Override
-    public String toString() {
-        String movesDesc = "";
-        for (Move move : theMoves) {
-            movesDesc = "Move: "+ move.name + "\n" + "PP: " + move.pp + "\n"+ "Damage: " + move.damage + "\n";
-        }
-        return movesDesc;
-    }
 }

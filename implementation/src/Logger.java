@@ -1,6 +1,6 @@
 public class Logger {
 
-    static Boolean doPrint = true;
+    static Boolean doPrint = false;
 
     //pure logging of normal messages
     public static void print(String msg){
