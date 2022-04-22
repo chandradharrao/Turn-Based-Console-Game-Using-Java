@@ -18,16 +18,23 @@ public class Opponent {
         this.theBadge = new Badge(this.name,this.level);
     }
 
+    //get difficulty of gym leader
+    public static String getDifficulty(int lvl){
+        switch(lvl){
+            case 0:
+                return Color.ANSI_GREEN+ "Easy"+Color.ANSI_RESET;
+            case 1:
+                return Color.ANSI_YELLOW+"Medium"+Color.ANSI_RESET;
+            case 2:
+                return Color.ANSI_RED+"Tough"+Color.ANSI_RESET;
+            default:
+                return "None";
+        }
+    }
+
     public void giveBadge(Player to){
         generateBadge();
         to.myBadges.add(theBadge);
-    }
-
-    public String toString(){
-        String details="";
-        details="Name: " + this.name + "\n";
-        details+="Level: " + this.level + "\n";
-        return details;
     }
 
     private void makeTeam(){

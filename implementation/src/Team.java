@@ -51,6 +51,7 @@ public class Team {
     }
 
     public void viewTeam(){
+        System.out.println("Your Team:");
         String alignmentFormat = "|%-10s|%-5s|%-6d|%-3d|%n";
 
         System.out.format("+----------+-----+------+---+%n");

@@ -60,10 +60,17 @@ public class Battle {
     }
 
     public void chooseOpponent(){
-        System.out.println("Choose your opponent: ");
+        System.out.println("Choose your opponent:");
+        String alignmentFormat = "|%-10s|%-20s|%n";
+
+        System.out.format("+----------+-----------+%n");
+        System.out.format("|Name      |Difficulty |%n");
+        System.out.format("+----------+-----------+%n");
         for (Opponent opponent : allOpponents) {
-            System.out.println(opponent.toString());
+            String diffulty = Opponent.getDifficulty(opponent.level);
+            System.out.format(alignmentFormat,opponent.name,diffulty);
         }
+        System.out.format("+----------+-----------+%n");
 
         //get user input
         try {
