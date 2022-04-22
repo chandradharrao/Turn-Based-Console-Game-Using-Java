@@ -51,12 +51,15 @@ public class Team {
     }
 
     public void viewTeam(){
-        System.out.println("+---------------+");
+        String alignmentFormat = "|%-10s|%-5s|%-6d|%-3d|%n";
+
+        System.out.format("+----------+-----+------+---+%n");
+        System.out.format("|Name      |Type |Health|XP |%n");
+        System.out.format("+----------+-----+------+---+%n");
         for(Pokemon poke: myPokemons){
-            System.out.println(poke.toString());
-            System.out.println("-----------------");
+            System.out.format(alignmentFormat,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
         }
-        System.out.println("+---------------+");
+        System.out.format("+----------+-----+------+---+%n");
     }
 
     //get total team XP so that some pokemons can be made avaialbe if threshold of needed XP is crossed

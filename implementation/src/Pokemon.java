@@ -85,12 +85,6 @@ public class Pokemon{
         this.XP=this.XP+XP;
     }
 
-    //display  a single Pokemon
-    @Override
-    public String toString() {
-        return "Name:"+this.Name+"\n"+"Type:"+getType(this.type)+"\n"+"Health:"+this.health+"\n"+"XP:"+this.XP+"\n";
-    }
-
     public void healMe(){
         this.health = maxHealth;
     }
