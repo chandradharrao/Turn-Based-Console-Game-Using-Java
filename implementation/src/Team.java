@@ -8,6 +8,11 @@ public class Team {
     private int[] starterPokeIDs;
     private Database db;
 
+    //XP needed for levels
+    private int level1 = 0;
+    private int level2 = 100;
+    private int level3 = 200;
+
     //<pokemonID-availability> map per user. If a pokemon with id j is available,make avilablePokemon[j] = True
     boolean[] availablePokemons;
 
@@ -45,6 +50,31 @@ public class Team {
         }
     }
 
+    //get total team XP so that some pokemons can be made avaialbe if threshold of needed XP is crossed
+    void updateAvailability(){
+        int totalXP = 0;
+        for (Pokemon p : myPokemons) {
+            totalXP+=p.XP;
+        }
+        if(level1<totalXP && totalXP<=level2){
+            //make next 10 pokemons avilable for selection
+            for(int i = 0;i<10;i++){
+                availablePokemons[i] = true;
+            }
+        }
+        else if(level2<totalXP && totalXP<=level3){
+            for(int i = 0;i<10;i++){
+                availablePokemons[i] = true;
+            }
+        }
+        else{
+            //make all pokeons avaialble
+            for(int i = 0;i<availablePokemons.length;i++){
+                availablePokemons[i] = true;
+            }
+        }
+    }
+
     //choose a pokemon for battle
     public void equipPokemon(int i){
         this.currPokemon = i;
@@ -57,6 +87,7 @@ public class Team {
 
     //gain XP or loose XP
     public void changeXP(int xpAmnt){
+        updateAvailability();
         this.myPokemons.get(this.currPokemon).changeXP(xpAmnt);
     }
 

@@ -1,0 +1,12 @@
+Dont allow player to choose pokemons with health less than 0
+Dont allow player to use move if PP is less than 0
+
+//can only be complete if database is completed
+Fill Database
+Database for opponent teams
+Take care of evolution
+Complete pokedex
+
+take care of mishaps during team selection by writing functions: addPokemon() and removePokemon() in the teams.java class
+
+event logger to catch the errors
