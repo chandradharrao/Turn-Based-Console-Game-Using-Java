@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.xml.crypto.Data;
+
 //create Pokemon class
 
 /*
@@ -21,21 +23,17 @@ public class Pokemon{
     protected int type;
     protected int evolutionID;
     public Moves moves;
+    public int evolveThreshold = 100;
 
-    Pokemon(int ID, String Name, int maxHealth, int type, int evolutionID, int XP){
+    Pokemon(int ID, String Name, int maxHealth, int type, int evolutionID, int XP, Moves moves){
         this.ID = ID;
         this.Name = Name;
-        this.maxHealth = maxHealth;
-        this.health= maxHealth;
+        this.maxHealth = maxHealth*10;
+        this.health= maxHealth*10;
         this.type = type;
         this.evolutionID = evolutionID;
         this.XP = XP;
-
-        //add moves for pokemon --only for testing purposes--
-        this.moves = new Moves();
-        this.moves.theMoves = new ArrayList<Move>();
-        for(int i = 0;i<4;i++)
-            moves.theMoves.add(new Move("Move"+i, i+3, i+7));
+        this.moves = moves;
     }   
 
     //returns the health of the pokemon
@@ -92,10 +90,8 @@ public class Pokemon{
         this.XP=this.XP+XP;
     }
 
+    //increases the health of the pokemon to maxHealth
     public void healMe(){
         this.health = maxHealth;
-    }
-
-    //display the list of moves available in the pokemon
-    
+    } 
 }

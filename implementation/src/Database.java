@@ -5,24 +5,27 @@ import java.util.List;
 public class Database {
     public Connection conn;
     public int numPokemons;
-    public int[] starterIDs = {0,1,2,3,4,5,6,7,8,9,10};
+    public int[] starterIDs = {0,3,5,30,33,35,60,63,66};
     public List<Pokemon> all_Pokemons;  //list of all pokemons
     public List<Move> fire_moves;
     public List<Move> water_moves;
     public List<Move> grass_moves;
 
     Database(){
-        openDatbase();  // establish connection with database
-        getAllPokemon();    //fetch pokemons from database and store in all_pokemons list
+        openDatabase();  // establish connection with database
+
         loadFireMoves();
         loadWaterMoves();
         loadGrassMoves();
+        
+        getAllPokemon();    //fetch pokemons from database and store in all_pokemons list
+
         //to run the program
         //java -cp "C:\Users\Pratheek\Desktop\sem 6\OOAD\Turn-Based-Console-Game-Using-Java\implementation\src\postgresql-42.3.3.jar";"C:\Users\Pratheek\Desktop\sem 6\OOAD\Turn-Based-Console-Game-Using-Java\implementation\src" Game
 
     }
 
-    void openDatbase(){
+    void openDatabase(){
         // establish connection with database
         conn = null;
         try {
@@ -36,7 +39,7 @@ public class Database {
             System.err.println(e.getClass().getName()+": "+e.getMessage());
             System.exit(0);
         }
-        System.out.println("Opened database successfully");
+        Logger.print("Opened database successfully");
     }
 
     //Load all the pokemons from database
@@ -52,14 +55,22 @@ public class Database {
                 String  name = rs.getString("name");
                 int hp  = rs.getInt("hp");
                 int  type = rs.getInt("type1");
+
+                Logger.print("+______________________+");
+                Logger.print(name + "Type from DB: "+type);
                 int evolution = rs.getInt("evolution");
                 // insert pokemon to list
-                all_Pokemons.add(new Pokemon(id, name, hp, type, evolution, 0 ));
+                Pokemon newPoke = new Pokemon(id, name, hp, type, evolution, 0, this.createMoves(type));
+                all_Pokemons.add(newPoke);
+                Logger.print("+______________________+");
+                Logger.print("\n");
+                
             }
             rs.close();
             stmt.close();
+            //Logger.print("Fetched all pokemons from database");
             numPokemons = all_Pokemons.size();
-            System.out.println("All Pokemons loaded");
+            //Logger.print("All Pokemons loaded");
         }
         catch (Exception e) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
@@ -72,6 +83,28 @@ public class Database {
     Pokemon getPokemon(int indx){
         Logger.print("Retrieveing Pokemon: "+all_Pokemons.get(indx).Name);
         return all_Pokemons.get(indx);
+    }
+
+    //randomize moves for each pokemon depending on type
+    public Moves createMoves(int type){
+        Moves theMoves = new Moves();
+        try{
+            List<Move> allMovesType = this.getTypeMoves(type);
+            //Logger.print("Loading moves for type: "+type);
+            for(int i = 0;i<4;i++){
+                int random = (int)(Math.random()*allMovesType.size());
+                //Logger.print("Size of allMovesType list "+allMovesType.size());
+                //Logger.print("Random number is : "+random);
+                Move move= allMovesType.get(random);
+                //Logger.print("Gotten move!");
+                Logger.print("Move added: "+ move.name);
+                theMoves.addMoves(move.name, move.pp, move.damage);    
+            }
+        }
+            catch(Exception e){
+                Logger.print(e.getClass().getName()+": "+e.getMessage(),1);
+            }   
+        return theMoves; 
     }
 
 
@@ -92,7 +125,7 @@ public class Database {
             }
             rs.close();
             stmt.close();
-            System.out.println("All Fire Moves loaded");
+            Logger.print("All Fire Moves loaded");
         }
         catch (Exception e) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
@@ -117,7 +150,7 @@ public class Database {
             }
             rs.close();
             stmt.close();
-            System.out.println("All Water Moves loaded");
+            Logger.print("All Water Moves loaded");
         }
         catch (Exception e) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
@@ -138,15 +171,27 @@ public class Database {
                 int  power = rs.getInt("power");
                 int  pp = rs.getInt("pp");
                 // insert pokemon to list
-                water_moves.add(new Move(name, pp,  power));
+                grass_moves.add(new Move(name, pp,  power));
             }
             rs.close();
             stmt.close();
-            System.out.println("All Grass Moves loaded");
+            Logger.print("All Grass Moves loaded");
         }
         catch (Exception e) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
             System.exit(0);
+        }
+    }
+    
+    List <Move> getTypeMoves(int type){
+        if(type == 0){
+            return fire_moves;
+        }
+        else if(type == 1){
+            return water_moves;
+        }
+        else{
+            return grass_moves;
         }
     }
 }

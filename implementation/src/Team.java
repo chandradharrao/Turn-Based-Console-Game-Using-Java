@@ -33,7 +33,33 @@ public class Team {
 
         //only starter poekmons avaiable intially
         for(int i = 0;i<starterPokeIDs.length;i++){
-            availablePokemons[i] = true;
+            availablePokemons[starterPokeIDs[i]] = true;
+        }
+    }
+
+    //evolve a certain pokemon
+    public void evolvePokemons(){
+        //list of prev pokemons to remove
+        List<Integer> toRem = new ArrayList<Integer>();
+
+        //if XP of a pokemon crosses certain threshold, remove the pokemon from the team and insert the evolved pokemon into the team
+        for(int i = 0;i<myPokemons.size();i++){
+            Pokemon poke = myPokemons.get(i);
+            if(poke.getXP()>poke.evolveThreshold){
+                Pokemon evolvedPoke = db.getPokemon(poke.evolutionID);
+
+                //transfer XP,health from prev pokemon
+                evolvedPoke.XP = poke.getXP();
+                evolvedPoke.health = poke.getHealth();
+                myPokemons.add(evolvedPoke);
+
+                toRem.add(i);
+            }
+        }
+
+        //remove the pokemons that evoleved
+        for (Integer i : toRem) {
+            myPokemons.remove(myPokemons.get(i));
         }
     }
 
@@ -51,7 +77,6 @@ public class Team {
     }
 
     public void viewTeam(){
-        System.out.println("Your Team:");
         String alignmentFormat = "|%-10s|%-5s|%-6d|%-3d|%n";
 
         System.out.format("+----------+-----+------+---+%n");
@@ -63,7 +88,7 @@ public class Team {
         System.out.format("+----------+-----+------+---+%n");
     }
 
-    //get total team XP so that some pokemons can be made avaialbe if threshold of needed XP is crossed
+    //get total team XP so that some pokemons can be made avaiable if threshold of needed XP is crossed
     void updateAvailability(){
         int totalXP = 0;
         for (Pokemon p : myPokemons) {
@@ -114,6 +139,7 @@ public class Team {
             //grab damage from amage matrix
             opponentTeam.damage(Battle.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]);
             this.changeXP(15);
+            this.myPokemons.get(this.currPokemon).moves.reducePP(moveNumber);
         }else{
             System.out.println("Not enough PP :(");
         }
@@ -122,18 +148,18 @@ public class Team {
     //fetch all pokemons in the database avaialble to the user
     public void listAvailablePokes(){
         System.out.println("Choose From:");
-        String alignmentFormat = "|%-10s|%-5s|%-6d|%-3d|%n";
+        String alignmentFormat = "|%-3s|%-10s|%-5s|%-6d|%-3d|%n";
 
-        System.out.format("+----------+-----+------+---+%n");
-        System.out.format("|Name      |Type |Health|XP |%n");
-        System.out.format("+----------+-----+------+---+%n");
+        System.out.format("+---+----------+-----+------+---+%n");
+        System.out.format("|ID |Name      |Type |Health|XP |%n");
+        System.out.format("+---+----------+-----+------+---+%n");
         for(int i = 0;i<availablePokemons.length;i++){
             if(availablePokemons[i]){
                 Pokemon poke = db.getPokemon(i);
-                System.out.format(alignmentFormat,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
+                System.out.format(alignmentFormat,poke.ID-1,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
             }
         }
-        System.out.format("+----------+-----+------+---+%n");
+        System.out.format("+---+----------+-----+------+---+%n");
     }
 
     //check if Team has lost

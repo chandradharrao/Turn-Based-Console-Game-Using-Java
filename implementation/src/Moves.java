@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Moves{
     List <Move> theMoves;
 
     Moves(){
-        this.theMoves=new ArrayList<Move>();
+        theMoves = new ArrayList<Move>();
     }
 
     //add moves to the list

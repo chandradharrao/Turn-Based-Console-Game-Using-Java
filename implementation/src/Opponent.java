@@ -40,7 +40,9 @@ public class Opponent {
     private void makeTeam(){
         //create a random team of 6 pokemons (consider repetion too)
         for(int i = 0;i<6;i++){
-            myTeam.addPokemon(0+(int)(Math.random()*(29-0)+1));
+            int pokeNum = 0+(int)(Math.random()*(29-0)+1);
+            Logger.print("Creating poke with index: "+pokeNum);
+            myTeam.addPokemon(pokeNum);
         }
     }
 
