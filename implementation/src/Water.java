@@ -1,6 +1,6 @@
 public class Water extends Pokemon{
-     Water(int ID, String Name, int health, int XP){
-        super(ID, Name, health,1, XP);
+     Water(int ID, String Name, int health, int evolutionId,int XP){
+        super(ID, Name, health,1,evolutionId, XP);
     }
 
      Moves waterMoves= new Moves();

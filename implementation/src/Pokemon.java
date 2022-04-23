@@ -19,14 +19,16 @@ public class Pokemon{
     protected int ID;
     protected String Name;
     protected int type;
+    protected int evolutionID;
     public Moves moves;
 
-    Pokemon(int ID, String Name, int maxHealth, int type, int XP){
+    Pokemon(int ID, String Name, int maxHealth, int type, int evolutionID, int XP){
         this.ID = ID;
         this.Name = Name;
         this.maxHealth = maxHealth;
         this.health= maxHealth;
         this.type = type;
+        this.evolutionID = evolutionID;
         this.XP = XP;
 
         //add moves for pokemon --only for testing purposes--
@@ -61,6 +63,11 @@ public class Pokemon{
         return type;
     }
 
+    //returns evolution ID of pokemon
+    public int getEvolutionID(){
+        return evolutionID;
+    }
+    
     //mapping b/w types
     public static String getType(int type){
         switch (type){

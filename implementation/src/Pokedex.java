@@ -12,9 +12,7 @@ public class Pokedex{
     }
 
     public void listAllPokemons(){
-        for(int i=0;i<numPokemons;i++){
-            System.out.println(all_Pokemons.get(i).Name);
-        }
+        db.getAllPokemon();
     }
 
     public void getInforFromName(String name){
