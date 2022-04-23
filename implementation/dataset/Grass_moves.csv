@@ -1,21 +1,21 @@
 ID,Name,Type,Power,PP
-1,Absorb,grass,20,25
-2,Aromatherapy,grass,25,5
-3,Bloom Doom,grass,25,1
-4,Bullet Seed,grass,25,30
-5,Cotton Guard,grass,25,10
-6,Cotton Spore,grass,25,40
-7,Energy Ball,grass,90,10
-8,Forest's Curse,grass,25,20
-9,Frenzy Plant,grass,150,5
-10,Giga Drain,grass,75,10
-11,Grass Knot,grass,25,20
-12,Grass Pledge,grass,80,10
-13,Grass Whistle,grass,25,15
-14,Grassy Terrain,grass,25,10
-15,Horn Leech,grass,75,10
-16,Ingrain,grass,25,20
-17,Leaf Blade,grass,90,15
-18,Leaf Storm,grass,130,5
-19,Leaf Tornado,grass,65,10
-20,Leafage,grass,40,40
+1,Absorb,2,20,25
+2,Aromatherapy,2,25,5
+3,Bloom Doom,2,25,1
+4,Bullet Seed,2,25,30
+5,Cotton Guard,2,25,10
+6,Cotton Spore,2,25,40
+7,Energy Ball,2,90,10
+8,Forest's Curse,2,25,20
+9,Frenzy Plant,2,150,5
+10,Giga Drain,2,75,10
+11,Grass Knot,2,25,20
+12,Grass Pledge,2,80,10
+13,Grass Whistle,2,25,15
+14,Grassy Terrain,2,25,10
+15,Horn Leech,2,75,10
+16,Ingrain,2,25,20
+17,Leaf Blade,2,90,15
+18,Leaf Storm,2,130,5
+19,Leaf Tornado,2,65,10
+20,Leafage,2,40,40

@@ -1,6 +1,6 @@
 import psycopg2
 #create pokemon database
-conn = psycopg2.connect("host=localhost user=postgres")
+conn = psycopg2.connect("host=localhost user=postgres password=pratheek")
 conn.autocommit = True
 cur = conn.cursor()
 drop_db = "DROP DATABASE pokemonDB"
@@ -11,9 +11,9 @@ print("database Created successfully.....")
 conn.commit()
 conn.close()
 #change accordingly in your system
-dataset_path = "/Users/darshanmadesh/Desktop/Projects/OOAD Pokemon/Turn-Based-Console-Game-Using-Java/implementation/dataset"
+dataset_path = "C:\\Users\\Pratheek\\Desktop\\sem 6\\OOAD\\Turn-Based-Console-Game-Using-Java\\implementation\\dataset"
 
-conn2 = psycopg2.connect("host=localhost dbname=pokemondb user=postgres")
+conn2 = psycopg2.connect("host=localhost dbname=pokemondb user=postgres password=pratheek")
 conn2.autocommit = True
 cur = conn2.cursor()
 #create move tables and insert to DB
@@ -28,7 +28,7 @@ for file in move_files:
     f"CREATE TABLE {file}(\n"
     f"ID int NOT NULL,\n"
     f"Name varchar(20),\n"
-    f"Type varchar(10),\n"
+    f"Type int,\n"
     f"Power int, PP int\n"
     f");"
     )
@@ -48,11 +48,11 @@ for file in move_files:
 conn2.commit()
 conn2.close()
 
-conn3 = psycopg2.connect("host=localhost dbname=pokemondb user=postgres")
+conn3 = psycopg2.connect("host=localhost dbname=pokemondb user=postgres password=pratheek")
 conn3.autocommit = True
 cur = conn3.cursor()
 #create move tables and insert to DB
-move_files = ['fire_pokemon','water_pokemon','grass_pokemon']
+move_files = ['pokemons']
 for file in move_files:
     try:
         drop_move_table = f"DROP TABLE {file}"
@@ -64,12 +64,13 @@ for file in move_files:
     f"ID int NOT NULL,\n"
     f"hp int,\n"
     f"name varchar(25),\n"
-    f"type1 varchar(10)\n"
+    f"type1 int,\n"
+    f"evolution int\n"
     f");"
     )
     cur.execute(create_move_table)
     copy_csv = (
-        f"COPY {file}(ID,hp,name,type1)\n"
+        f"COPY {file}(ID,hp,name,type1,evolution)\n"
         f"FROM '{dataset_path}/{file}.csv' \n"
         f"DELIMITER ','\n"
         f"CSV HEADER;"

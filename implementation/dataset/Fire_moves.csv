@@ -1,21 +1,21 @@
 ID,Name,Type,Power,PP
-1,Blast Burn,fire,150,5
-2,Blaze Kick,fire,85,10
-3,Blue Flare,fire,130,5
-4,Burn Up,fire,130,5
-5,Ember,fire,40,25
-6,Eruption,fire,150,5
-7,Fiery Dance,fire,80,10
-8,Fire Blast,fire,110,5
-9,Fire Fang,fire,65,15
-10,Fire Lash,fire,80,15
-11,Fire Pledge,fire,80,10
-12,Fire Punch,fire,75,15
-13,Fire Spin,fire,35,15
-14,Flame Burst,fire,70,15
-15,Flame Charge,fire,50,20
-16,Flame Wheel,fire,60,25
-17,Flamethrower,fire,90,15
-18,Flare Blitz,fire,120,15
-19,Fusion Flare,fire,100,5
-20,Heat Crash,fire,25,10
+1,Blast Burn,0,150,5
+2,Blaze Kick,0,85,10
+3,Blue Flare,0,130,5
+4,Burn Up,0,130,5
+5,Ember,0,40,25
+6,Eruption,0,150,5
+7,Fiery Dance,0,80,10
+8,Fire Blast,0,110,5
+9,Fire Fang,0,65,15
+10,Fire Lash,0,80,15
+11,Fire Pledge,0,80,10
+12,Fire Punch,0,75,15
+13,Fire Spin,0,35,15
+14,Flame Burst,0,70,15
+15,Flame Charge,0,50,20
+16,Flame Wheel,0,60,25
+17,Flamethrower,0,90,15
+18,Flare Blitz,0,120,15
+19,Fusion Flare,0,100,5
+20,Heat Crash,0,25,10
