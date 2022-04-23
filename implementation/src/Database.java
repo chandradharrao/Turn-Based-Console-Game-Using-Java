@@ -1,4 +1,4 @@
-import java.sql.*;
+// import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +7,7 @@ public class Database {
     public int[] starterIDs = {0,1,2,3,4,5,6,7,8,9,10};
 
     //list of all pokemons
-    List<Pokemon> all_Pokemons;
+    public List<Pokemon> all_Pokemons;
     
     Database(){
         //fetch pokemons from database and store in all_pokemons list
