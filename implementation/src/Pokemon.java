@@ -81,8 +81,8 @@ public class Pokemon{
     }
 
     //sets the health of the pokemon during battle
-    public void changeHealth(int health){
-        this.health=this.health-health;
+    public void changeHealth(int damage){
+        health=health-damage;
     }
 
     //sets the experience points of the pokemon

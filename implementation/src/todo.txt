@@ -12,6 +12,8 @@ take care of mishaps during team selection by writing functions: addPokemon() an
 
 event logger to catch the errors
 
+try catch blocks in player
+
 
 integrate design patterns
 - facade :: battle class

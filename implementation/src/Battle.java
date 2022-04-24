@@ -15,9 +15,9 @@ public class Battle {
 
     //amount of damage induced
     static int[][] damageMatrix = {
-        {10,5,20},
-        {20,10,5},
-        {5,20,10}
+        {2,1,5},
+        {5,2,1},
+        {1,5,2}
     }; 
 
     Battle(){
@@ -33,6 +33,8 @@ public class Battle {
         allOpponents.add(new Opponent(db, 0,"Maylene"));
         allOpponents.add(new Opponent(db, 1, "Misty"));
         allOpponents.add(new Opponent(db, 2, "Brock"));
+
+        Logger.print("Number of opponents: "+ allOpponents.size());
     }
     
     public void EndGame(){
@@ -45,17 +47,20 @@ public class Battle {
         //Display all the pokemons available to the user
         player.myTeam.listAvailablePokes();
         
-        //ask user to choose between displayed pokemon
-        while(player.myTeam.teamSize<6){
-            System.out.println("Enter the Pokemon number");
-            int pnum = Integer.parseInt(System.console().readLine());
+        // //ask user to choose between displayed pokemon
+        // while(player.myTeam.teamSize<6){
+        //     System.out.println("Enter the Pokemon number");
+        //     int pnum = Integer.parseInt(System.console().readLine());
 
-            boolean res = player.myTeam.addPokemon(pnum);
-            if(!res){
-                System.out.println("Not allowed to choose that pokemon yet!");
-            }
+        //     boolean res = player.myTeam.addPokemon(pnum);
+        //     if(!res){
+        //         System.out.println("Not allowed to choose that pokemon yet!");
+        //     }
+
+        //for testing purposes
+        for(int i=0 ; i<6; i++){
+            player.myTeam.addPokemon(db.starterIDs[i]);
         }
-
         //after choosing 6 pokemons
         player.myTeam.viewTeam();
     }
@@ -83,13 +88,13 @@ public class Battle {
 
     private void fightOpponent(){
         while(run){
+
             //display team
             System.out.println("Your team details:");
             player.myTeam.viewTeam();
 
             System.out.println(currOpponent.name+ "'s team details:");
             currOpponent.myTeam.viewTeam();
-
 
             //choose current pokemon in team
             System.out.println("Choose your current pokemon: ");
@@ -99,28 +104,32 @@ public class Battle {
             //display move of current pokemon
             Pokemon poke = player.myTeam.myPokemons.get(player.myTeam.currPokemon);
             System.out.println("Moves of "+poke.Name+" are:");
-            String alignment = "|%-9s|%-4d|%-6d|%n";
-            System.out.format("+---------+----+------+%n");
-            System.out.format("|Name     |PP  |Damage|%n");
-            System.out.format("+---------+----+------+%n");
+            String alignment = "|%-20s|%-4d|%-6d|%n";
+            System.out.format("+--------------------+----+------+%n");
+            System.out.format("|Name                |PP  |Damage|%n");
+            System.out.format("+--------------------+----+------+%n");
             for (Move move : poke.moves.theMoves) {
                 System.out.format(alignment,move.name,move.pp,move.damage);
             }
-            System.out.format("+---------+----+------+%n");
+            System.out.format("+--------------------+----+------+%n");
 
             //ask player to choose move and attack
             System.out.println("Choose a move:");
             int move = Integer.parseInt(System.console().readLine());
             player.myTeam.useMove(move,currOpponent.myTeam);
+            Logger.print("After player attacks,opponent health is: " + currOpponent.myTeam.myPokemons.get(currOpponent.myTeam.currPokemon).health);
 
             //opponent attacks player
+            System.out.println(currOpponent.name +" is attacking you......");
             Boolean didOpponentLoose = currOpponent.attackPlayer(player);
-            if(didOpponentLoose){
+            if(!didOpponentLoose){
                 System.out.format("+---------------------------+%n");
-                String alignment1 = "|%-27s|%n";
+                String alignment1 = "|%-50s|%n";
                 System.out.format(alignment1,Color.ANSI_GREEN+"You Win"+Color.ANSI_RESET);
                 System.out.format("+---------------------------+%n");
+
                 currOpponent.giveBadge(player);
+                System.out.println("You recived a badge from: "+player.myBadges.get(player.myBadges.size()-1).gymLeaderName+ " !");
                 System.out.println("Do you want to heal your pokemon before next battle?\nPress Y or N");
                 char doHeal = System.console().readLine().charAt(0);
                 

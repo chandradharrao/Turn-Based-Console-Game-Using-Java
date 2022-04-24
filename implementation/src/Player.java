@@ -10,7 +10,7 @@ public class Player {
     public List<Badge> myBadges;
 
     Player(Database db){
-        myTeam = new Team(db);
+        myTeam = new Team(db,db.starterIDs);
         playerDetails();
 
         //list of badges collected by the player

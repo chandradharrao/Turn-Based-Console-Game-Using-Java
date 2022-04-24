@@ -16,14 +16,14 @@ public class Team {
     //<pokemonID-availability> map per user. If a pokemon with id j is available,make avilablePokemon[j] = True
     boolean[] availablePokemons;
 
-    Team(Database db){
+    Team(Database db,int[] starterIDs){
         this.db = db;
 
         teamSize = 0;
         myPokemons = new ArrayList<Pokemon>();
 
         numPokemons = db.numPokemons;
-        starterPokeIDs = db.starterIDs;
+        starterPokeIDs = starterIDs;
 
         //allpokemons except starter pokemons
         availablePokemons = new boolean[numPokemons];
@@ -31,7 +31,7 @@ public class Team {
             availablePokemons[i] = false;
         }
 
-        //only starter poekmons avaiable intially
+        //only starter pokemons available intially
         for(int i = 0;i<starterPokeIDs.length;i++){
             availablePokemons[starterPokeIDs[i]] = true;
         }
@@ -39,27 +39,20 @@ public class Team {
 
     //evolve a certain pokemon
     public void evolvePokemons(){
-        //list of prev pokemons to remove
-        List<Integer> toRem = new ArrayList<Integer>();
-
         //if XP of a pokemon crosses certain threshold, remove the pokemon from the team and insert the evolved pokemon into the team
-        for(int i = 0;i<myPokemons.size();i++){
+        int sze = myPokemons.size();
+        for(int i = 0;i<sze;i++){
             Pokemon poke = myPokemons.get(i);
-            if(poke.getXP()>poke.evolveThreshold){
-                Pokemon evolvedPoke = db.getPokemon(poke.evolutionID);
+            if(poke.evolutionID!=0 && poke.getXP()>poke.evolveThreshold){
+                Pokemon evolvedPoke = db.getPokemon(poke.evolutionID-1);
 
                 //transfer XP,health from prev pokemon
                 evolvedPoke.XP = poke.getXP();
                 evolvedPoke.health = poke.getHealth();
-                myPokemons.add(evolvedPoke);
-
-                toRem.add(i);
+                Logger.print("Adding evolved poke to the list: "+evolvedPoke.Name);
+                Logger.print("Added Pkemon: " + evolvedPoke.Name);
+                myPokemons.set(i,evolvedPoke);
             }
-        }
-
-        //remove the pokemons that evoleved
-        for (Integer i : toRem) {
-            myPokemons.remove(myPokemons.get(i));
         }
     }
 
@@ -69,9 +62,11 @@ public class Team {
         if(availablePokemons[i]){
             Pokemon poke = db.getPokemon(i);
             myPokemons.add(poke);
+            Logger.print("Added a poke!!");
             teamSize+=1;
             return true;
         }else{
+            Logger.print("No access to poke with the num: "+i);
             return false;
         }
     }
@@ -83,6 +78,9 @@ public class Team {
         System.out.format("|Name      |Type |Health|XP |%n");
         System.out.format("+----------+-----+------+---+%n");
         for(Pokemon poke: myPokemons){
+            if (poke.health<=0){
+                continue;
+            }
             System.out.format(alignmentFormat,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
         }
         System.out.format("+----------+-----+------+---+%n");
@@ -132,14 +130,22 @@ public class Team {
     //use a move from current pokemon
     public void useMove(int moveNumber,Team opponentTeam){
         if(this.myPokemons.get(this.currPokemon).moves.getPP(moveNumber)>0){
-            
+             //gain XP
+            Logger.print("Increasing XP for "+this.myPokemons.get(this.currPokemon).Name);
+            this.changeXP(150);
+
+            //if there is evolution needed,evolve the pokemons
+            evolvePokemons();
+
             //reduce moves PP for curr pokemon
             this.myPokemons.get(this.currPokemon).moves.reducePP(moveNumber);
-
+            Logger.print("PP successfully reduced");
+            Logger.print("Name "+this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).name);
             //grab damage from amage matrix
-            opponentTeam.damage(Battle.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]);
-            this.changeXP(15);
-            this.myPokemons.get(this.currPokemon).moves.reducePP(moveNumber);
+            // Logger.print("row index : "+ this.myPokemons.get(this.currPokemon).type);
+            // Logger.print("col index : "+ opponentTeam.myPokemons.get(opponentTeam.currPokemon).type);
+            opponentTeam.damage(Battle.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
+            Logger.print(" Damage caused by move is : " + Battle.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
         }else{
             System.out.println("Not enough PP :(");
         }

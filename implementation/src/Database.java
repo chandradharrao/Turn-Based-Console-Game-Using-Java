@@ -22,7 +22,7 @@ public class Database {
 
         //to run the program
         //java -cp "C:\Users\Pratheek\Desktop\sem 6\OOAD\Turn-Based-Console-Game-Using-Java\implementation\src\postgresql-42.3.3.jar";"C:\Users\Pratheek\Desktop\sem 6\OOAD\Turn-Based-Console-Game-Using-Java\implementation\src" Game
-
+        // call haako
     }
 
     void openDatabase(){
@@ -56,14 +56,14 @@ public class Database {
                 int hp  = rs.getInt("hp");
                 int  type = rs.getInt("type1");
 
-                Logger.print("+______________________+");
-                Logger.print(name + "Type from DB: "+type);
+                //Logger.print("+______________________+");
+                //Logger.print(name + "Type from DB: "+type);
                 int evolution = rs.getInt("evolution");
                 // insert pokemon to list
                 Pokemon newPoke = new Pokemon(id, name, hp, type, evolution, 0, this.createMoves(type));
                 all_Pokemons.add(newPoke);
-                Logger.print("+______________________+");
-                Logger.print("\n");
+                //Logger.print("+______________________+");
+                //Logger.print("\n");
                 
             }
             rs.close();
@@ -81,7 +81,7 @@ public class Database {
     //get the pokemon object at index
     //todo: indx=indx-1 as it is zero based indexing 
     Pokemon getPokemon(int indx){
-        Logger.print("Retrieveing Pokemon: "+all_Pokemons.get(indx).Name);
+        //Logger.print("Retrieveing Pokemon: "+all_Pokemons.get(indx).Name);
         return all_Pokemons.get(indx);
     }
 
@@ -97,7 +97,7 @@ public class Database {
                 //Logger.print("Random number is : "+random);
                 Move move= allMovesType.get(random);
                 //Logger.print("Gotten move!");
-                Logger.print("Move added: "+ move.name);
+                //Logger.print("Move added: "+ move.name);
                 theMoves.addMoves(move.name, move.pp, move.damage);    
             }
         }

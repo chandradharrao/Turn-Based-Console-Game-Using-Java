@@ -4,6 +4,8 @@
 
 class Game{
     public static void main(String[] args) {
+        Logger.print("GAME STARTED!");
+
         Battle battle = new Battle();
 
         battle.StartBattle();
