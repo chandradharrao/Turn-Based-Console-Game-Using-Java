@@ -28,19 +28,6 @@ public class Opponent {
         this.theBadge = new Badge(this.name,this.level);
     }
 
-    //get difficulty of gym leader
-    public static String getDifficulty(int lvl){
-        switch(lvl){
-            case 0:
-                return Color.ANSI_GREEN+ "Easy"+Color.ANSI_RESET;
-            case 1:
-                return Color.ANSI_YELLOW+"Medium"+Color.ANSI_RESET;
-            case 2:
-                return Color.ANSI_RED+"Tough"+Color.ANSI_RESET;
-            default:
-                return "None";
-        }
-    }
 
     public void giveBadge(Player to){
         generateBadge();
@@ -103,14 +90,7 @@ public class Opponent {
                         Logger.print("Poke using the move is : " + myPoke.Name);
 
                         //display the opponet's curr pokemon
-                        System.out.println(this.name + " 's"+" current pokemon");
-                        String alignmentFormat = "|%-3s|%-10s|%-5s|%-6d|%-3d|%n";
-                        System.out.format("+---+----------+-----+------+---+%n");
-                        System.out.format("|ID |Name      |Type |Health|XP |%n");
-                        System.out.format("+---+----------+-----+------+---+%n");
-                        Pokemon oppCurrPoke = this.myTeam.myPokemons.get(this.myTeam.currPokemon);
-                        System.out.format(alignmentFormat,oppCurrPoke.ID,oppCurrPoke.Name,oppCurrPoke.type,oppCurrPoke.health,oppCurrPoke.XP);
-                        System.out.format("+---+----------+-----+------+---+%n");
+                        View.displaySinglePoke(this);
 
                         System.out.println("Using Move: "+myTeam.myPokemons.get(myTeam.currPokemon).moves.theMoves.get(i).name);
                         myTeam.useMove(i, player.myTeam);

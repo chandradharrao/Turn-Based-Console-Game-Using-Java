@@ -8,6 +8,8 @@ public class Team {
     private int[] starterPokeIDs;
     private Database db;
 
+    List<Integer> died = new ArrayList<Integer>();
+
     //XP needed for levels
     private int level1 = 0;
     private int level2 = 100;
@@ -69,21 +71,6 @@ public class Team {
             Logger.print("No access to poke with the num: "+i);
             return false;
         }
-    }
-
-    public void viewTeam(){
-        String alignmentFormat = "|%-10s|%-5s|%-6d|%-3d|%n";
-
-        System.out.format("+----------+-----+------+---+%n");
-        System.out.format("|Name      |Type |Health|XP |%n");
-        System.out.format("+----------+-----+------+---+%n");
-        for(Pokemon poke: myPokemons){
-            if (poke.health<=0){
-                continue;
-            }
-            System.out.format(alignmentFormat,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
-        }
-        System.out.format("+----------+-----+------+---+%n");
     }
 
     //get total team XP so that some pokemons can be made avaiable if threshold of needed XP is crossed
@@ -151,22 +138,22 @@ public class Team {
         }
     }
 
-    //fetch all pokemons in the database avaialble to the user
-    public void listAvailablePokes(){
-        System.out.println("Choose From:");
-        String alignmentFormat = "|%-3s|%-10s|%-5s|%-6d|%-3d|%n";
+    // //fetch all pokemons in the database avaialble to the user
+    // public void listAvailablePokes(){
+    //     System.out.println("Choose From:");
+    //     String alignmentFormat = "|%-3s|%-10s|%-5s|%-6d|%-3d|%n";
 
-        System.out.format("+---+----------+-----+------+---+%n");
-        System.out.format("|ID |Name      |Type |Health|XP |%n");
-        System.out.format("+---+----------+-----+------+---+%n");
-        for(int i = 0;i<availablePokemons.length;i++){
-            if(availablePokemons[i]){
-                Pokemon poke = db.getPokemon(i);
-                System.out.format(alignmentFormat,poke.ID-1,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
-            }
-        }
-        System.out.format("+---+----------+-----+------+---+%n");
-    }
+    //     System.out.format("+---+----------+-----+------+---+%n");
+    //     System.out.format("|ID |Name      |Type |Health|XP |%n");
+    //     System.out.format("+---+----------+-----+------+---+%n");
+    //     for(int i = 0;i<availablePokemons.length;i++){
+    //         if(availablePokemons[i]){
+    //             Pokemon poke = db.getPokemon(i);
+    //             System.out.format(alignmentFormat,poke.ID-1,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
+    //         }
+    //     }
+    //     System.out.format("+---+----------+-----+------+---+%n");
+    // }
 
     //check if Team has lost
     public Boolean didTeamLoose(){
