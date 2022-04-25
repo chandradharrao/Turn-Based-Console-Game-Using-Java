@@ -20,10 +20,15 @@ public class Battle {
         {1,5,2}
     }; 
 
+    OpponentFacade opponentCreator;
+
     Battle(){
 
         //singleton design pattern
         db = Database.getInstance();
+
+        //facade design pattern
+        opponentCreator = new OpponentFacade();
 
         //create all gym leaders and fill in the allOpponents array
         player = new Player(db);
@@ -33,9 +38,9 @@ public class Battle {
         
 
         //create 3 gym leaders
-        allOpponents.add(new Opponent(db, 0,"Maylene"));
-        allOpponents.add(new Opponent(db, 1, "Misty"));
-        allOpponents.add(new Opponent(db, 2, "Brock"));
+        allOpponents.add(opponentCreator.createOpponent("Maylene", db));
+        allOpponents.add(opponentCreator.createOpponent("Misty", db));
+        allOpponents.add(opponentCreator.createOpponent("Brock", db));
 
         Logger.print("Number of opponents: "+ allOpponents.size());
     }
