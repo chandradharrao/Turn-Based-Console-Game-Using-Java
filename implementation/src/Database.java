@@ -11,7 +11,9 @@ public class Database {
     public List<Move> water_moves;
     public List<Move> grass_moves;
 
-    Database(){
+    private static Database db;
+
+    private Database(){
         openDatabase();  // establish connection with database
 
         loadFireMoves();
@@ -23,6 +25,14 @@ public class Database {
         //to run the program
         //java -cp "C:\Users\Pratheek\Desktop\sem 6\OOAD\Turn-Based-Console-Game-Using-Java\implementation\src\postgresql-42.3.3.jar";"C:\Users\Pratheek\Desktop\sem 6\OOAD\Turn-Based-Console-Game-Using-Java\implementation\src" Game
         // call haako
+    }
+
+    //singeton
+    public static Database getInstance(){
+        if(db==null){
+            db = new Database();
+        }
+        return db;
     }
 
     void openDatabase(){

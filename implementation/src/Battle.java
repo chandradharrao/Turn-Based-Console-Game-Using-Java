@@ -21,8 +21,11 @@ public class Battle {
     }; 
 
     Battle(){
+
+        //singleton design pattern
+        db = Database.getInstance();
+
         //create all gym leaders and fill in the allOpponents array
-        db = new Database();
         player = new Player(db);
         nurseJoy = new HealCentre();
         allOpponents = new ArrayList<Opponent>();
