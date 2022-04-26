@@ -2,17 +2,26 @@ public class FightOpponent implements BattleState{
     public void doAction(BattleManager battleManager){
         while(battleManager.run){
 
-            //display team
+            //display teams
             System.out.println("Your team details:");
             View.displayTeam(battleManager.player.myTeam);
 
             System.out.println(battleManager.currOpponent.name+ "'s team details:");
             View.displayTeam(battleManager.currOpponent.myTeam);
 
-            //choose current pokemon in team
-            System.out.println("Choose your current pokemon: ");
-            int currPoke = Integer.parseInt(System.console().readLine());
-            battleManager.player.myTeam.equipPokemon(currPoke);
+            int currPoke;
+            do{
+               try{
+                    //choose current pokemon in team
+                    System.out.println("Choose your current pokemon: ");
+                    currPoke = Integer.parseInt(System.console().readLine());
+                    battleManager.player.myTeam.equipPokemon(currPoke);
+               }catch(Exception e){
+                   System.out.println("Enter Move number again!");
+                   Logger.print(""+e);
+                   currPoke = 100;
+               }
+            }while(currPoke>=6 || currPoke<0);
 
             //display move of current pokemon
             Pokemon poke = battleManager.player.myTeam.myPokemons.get(battleManager.player.myTeam.currPokemon);
@@ -20,10 +29,19 @@ public class FightOpponent implements BattleState{
             View.displayMoves(poke.moves.theMoves,poke.Name);
 
             //ask player to choose move and attack
-            System.out.println("Choose a move:");
-            int move = Integer.parseInt(System.console().readLine());
-            battleManager.player.myTeam.useMove(move,battleManager.currOpponent.myTeam);
-            Logger.print("After player attacks,opponent health is: " + battleManager.currOpponent.myTeam.myPokemons.get(battleManager.currOpponent.myTeam.currPokemon).health);
+            while(true){
+                System.out.println("Choose a move:");
+                int move = Integer.parseInt(System.console().readLine());
+                
+                try{
+                    battleManager.player.myTeam.useMove(move,battleManager.currOpponent.myTeam);
+                    Logger.print("After player attacks,opponent health is: " + battleManager.currOpponent.myTeam.myPokemons.get(battleManager.currOpponent.myTeam.currPokemon).health);
+                    break;
+                }
+                catch(Exception e){
+                    Logger.print("Wrong move number,try again.");
+                }
+            }
 
             //opponent attacks player
             System.out.println(battleManager.currOpponent.name +" is attacking you......");
@@ -31,13 +49,18 @@ public class FightOpponent implements BattleState{
             if(!didOpponentLoose){
                 View.displayWin();
 
+                //player recieves badge upon victory
                 battleManager.currOpponent.giveBadge(battleManager.player);
                 System.out.println("You recived a badge from: "+battleManager.player.myBadges.get(battleManager.player.myBadges.size()-1).gymLeaderName+ " !");
+
+                //pop opponent from the list of opponentts
+                battleManager.allOpponents.remove(battleManager.currOpponent);
                 
+                //asking user if he wants to heal all his pokemons to maximum health
                 System.out.println("Do you want to heal your pokemon before next battle?\nPress Y or N");
                 char doHeal = System.console().readLine().charAt(0);
                 
-                if(doHeal=='Y'){
+                if(doHeal=='Y' || doHeal=='y'){
                     battleManager.nurseJoy.healWork(battleManager.player.myTeam);
                 }
                 else{

@@ -8,7 +8,7 @@ public class ChooseOpponent implements BattleState {
         } catch (Exception e) {
 
             //wrong input,hence ask him to choose again
-            System.out.println(e);
+            Logger.print(""+e);
             this.doAction(battleManager);
         }
 

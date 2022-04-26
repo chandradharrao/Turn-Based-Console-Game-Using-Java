@@ -14,7 +14,7 @@ public class BattleManager {
     Boolean gameStart = false; 
     Boolean run = true; //for while loop to check if players team has lost all health or PP
     Boolean gameLoop = true; //run the entire game in a loop
-    OpponentFacade opponentCreator;
+    OpponentFactory opponentCreator;
 
     //amount of damage induced
     static int[][] damageMatrix = {
@@ -23,14 +23,25 @@ public class BattleManager {
         {1,5,2}
     }; 
 
-    public BattleManager(){
+    //singleton Battle Manager
+    private static  BattleManager battleManager = null;
+
+    //Public access to Singleton instance
+    public static BattleManager getInstance(){
+        if(battleManager==null){
+            battleManager = new BattleManager();
+        }
+        return battleManager;
+    }
+
+    private BattleManager(){
         state = null;
 
         //singleton design pattern
         db = Database.getInstance();
 
         //facade design pattern
-        opponentCreator = new OpponentFacade();
+        opponentCreator = new OpponentFactory();
 
         //create all gym leaders and fill in the allOpponents array
         player = new Player(db);

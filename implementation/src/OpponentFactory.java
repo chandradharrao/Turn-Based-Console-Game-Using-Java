@@ -1,4 +1,4 @@
-public class OpponentFacade {
+public class OpponentFactory {
     public Opponent createOpponent(String name,Database db){
         switch(name){
             case "Maylene":

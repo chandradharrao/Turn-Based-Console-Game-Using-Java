@@ -117,7 +117,7 @@ public class Team {
     //use a move from current pokemon
     public void useMove(int moveNumber,Team opponentTeam){
         if(this.myPokemons.get(this.currPokemon).moves.getPP(moveNumber)>0){
-             //gain XP
+            //gain XP
             Logger.print("Increasing XP for "+this.myPokemons.get(this.currPokemon).Name);
             this.changeXP(150);
 
@@ -133,7 +133,8 @@ public class Team {
             // Logger.print("col index : "+ opponentTeam.myPokemons.get(opponentTeam.currPokemon).type);
             opponentTeam.damage(BattleManager.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
             Logger.print(" Damage caused by move is : " + BattleManager.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
-        }else{
+        }
+        else{
             System.out.println("Not enough PP :(");
         }
     }

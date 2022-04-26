@@ -13,21 +13,23 @@ class View{
             String diffulty = View.getDifficulty(opponent.level);
             //Logger.print(diffulty);
             System.out.format(alignmentFormat,i,opponent.name,diffulty);
-            i++;
+            i+=1;
         }
         System.out.format("+----+----------+-----------+%n");
     }
 
     public static void displayMoves(List<Move> moves,String name){
         System.out.println("Moves of "+name+" are:");
-        String alignment = "|%-20s|%-4d|%-6d|%n";
-        System.out.format("+--------------------+----+------+%n");
-        System.out.format("|Name                |PP  |Damage|%n");
-        System.out.format("+--------------------+----+------+%n");
+        String alignment = "|%-3d|%-20s|%-4d|%-6d|%n";
+        System.out.format("+---+--------------------+----+------+%n");
+        System.out.format("|ID |Name                |PP  |Damage|%n");
+        System.out.format("+---+--------------------+----+------+%n");
+        int id=0;
         for (Move move : moves) {
-                System.out.format(alignment,move.name,move.pp,move.damage);
-            }
-        System.out.format("+--------------------+----+------+%n");
+                System.out.format(alignment,id,move.name,move.pp,move.damage);
+                id+=1;
+        }
+        System.out.format("+---+--------------------+----+------+%n");
     }
 
     public static void displayWin(){
@@ -38,7 +40,7 @@ class View{
     }
 
     public static void displayTeam(Team team){
-        String alignmentFormat = "|%-3s|%-14s|%-5s|%-6d|%-5d|%n";
+        String alignmentFormat = "|%-3d|%-14s|%-5s|%-6d|%-5d|%n";
 
         System.out.format("+---+--------------+-----+------+-----+%n");
         System.out.format("|ID |Name          |Type |Health|XP   |%n");
