@@ -8,6 +8,12 @@ public class Logger {
             System.out.println(Color.ANSI_BLUE+"[MESSAGE]:"+msg+Color.ANSI_RESET);
     }
 
+    public static void print(String msg, boolean doPrint){
+        if(doPrint)
+            return;
+        System.out.println(Color.ANSI_BLUE+"[MESSAGE]:"+msg+Color.ANSI_RESET);
+    }
+
     //severity based logging
     public static void print(String msg,int severity){
         if(doPrint){

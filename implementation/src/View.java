@@ -56,6 +56,17 @@ class View{
     }
 
     public static void listAvailablePokes(boolean availablePokemons[], Database db){
+        Pokedex pokedex = Pokedex.getInstance();
+
+        System.out.println("Pokedex information of the available Pokemon are:");
+        for(int i=0; i<availablePokemons.length; i++){
+            if(availablePokemons[i]){
+                Pokemon poke = db.getPokemon(i);
+                pokedex.getInfoFromName(poke.Name);
+            }
+        }
+
+
         System.out.println("Choose From:");
         String alignmentFormat = "|%-3s|%-10s|%-5s|%-7d|%-5d|%n";
 
@@ -102,11 +113,11 @@ class View{
         for(int i=0;i<numPokemons;i++){
             if(all_Pokemons.get(i).Name.equals(name)){
                 Pokemon pokemon = all_Pokemons.get(i);
-                String alignment = "|%-9s|%-12d|%-11d|%-9|%n";
+                String alignment = "|%-9d|%-12s|%-11d|%-8s|%n";
                 System.out.format("+---------+------------+-----------+--------+%n");
                 System.out.format("|ID       |Name        |Max Health |Type    |%n");
                 System.out.format("+---------+------------+-----------+--------+%n");
-                System.out.format(alignment, pokemon.ID, pokemon.Name, pokemon.maxHealth, pokemon.type);
+                System.out.format(alignment, pokemon.ID, pokemon.Name, pokemon.maxHealth, Pokemon.getType(pokemon.type));
                 System.out.format("+---------+------------+-----------+--------+%n");
             }
         }
@@ -115,15 +126,15 @@ class View{
     public static void getInfoFromPokemon(Database db, Pokemon p){
         int numPokemons= db.numPokemons;
         List<Pokemon>all_Pokemons=db.all_Pokemons;
-       for(int i=0 ; i<numPokemons; i++){
+        for(int i=0 ; i<numPokemons; i++){
               if(all_Pokemons.get(i).Name.equals(p.Name)){
-                String alignment = "|%-9s|%-12d|%-11d|%-9|%n";
+                String alignment = "|%-9d|%-12d|%-11d|%-9s|%n";
                 System.out.format("+---------+------------+-----------+--------+%n");
                 System.out.format("|ID       |Name        |Max Health |Type    |%n");
                 System.out.format("+---------+------------+-----------+--------+%n");
                 System.out.format(alignment, p.ID, p.Name, p.maxHealth, p.type);
                 System.out.format("+---------+------------+-----------+--------+%n");
               }
-       }
+        }
     }
 }

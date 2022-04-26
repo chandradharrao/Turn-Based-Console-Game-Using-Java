@@ -5,12 +5,20 @@ public class Pokedex{
     protected Database db;
     protected List<Pokemon> all_Pokemons;
     
+    private static Pokedex pokedex;
+
     Pokedex(Database db){
         this.db = db;
         numPokemons=db.numPokemons;
         all_Pokemons = db.all_Pokemons;
     }
 
+    public static Pokedex getInstance(){
+        if(pokedex==null){
+            pokedex = new Pokedex(Database.getInstance());
+        }
+        return pokedex;
+    }
     public void listAllPokemons(){
         db.getAllPokemon();
     }

@@ -78,9 +78,9 @@ public class Database {
             }
             rs.close();
             stmt.close();
-            //Logger.print("Fetched all pokemons from database");
+            Logger.print("Fetched all pokemons from database", true);
             numPokemons = all_Pokemons.size();
-            //Logger.print("All Pokemons loaded");
+            Logger.print("All Pokemons loaded");
         }
         catch (Exception e) {
             System.err.println( e.getClass().getName()+": "+ e.getMessage() );
@@ -91,7 +91,7 @@ public class Database {
     //get the pokemon object at index
     //todo: indx=indx-1 as it is zero based indexing 
     Pokemon getPokemon(int indx){
-        //Logger.print("Retrieveing Pokemon: "+all_Pokemons.get(indx).Name);
+        Logger.print("Retrieveing Pokemon: "+all_Pokemons.get(indx).Name, true);
         return all_Pokemons.get(indx);
     }
 
@@ -100,14 +100,14 @@ public class Database {
         Moves theMoves = new Moves();
         try{
             List<Move> allMovesType = this.getTypeMoves(type);
-            //Logger.print("Loading moves for type: "+type);
+            Logger.print("Loading moves for type: "+type, true);
             for(int i = 0;i<4;i++){
                 int random = (int)(Math.random()*allMovesType.size());
-                //Logger.print("Size of allMovesType list "+allMovesType.size());
-                //Logger.print("Random number is : "+random);
+                Logger.print("Size of allMovesType list "+allMovesType.size(), true);
+                Logger.print("Random number is : "+random, true);
                 Move move= allMovesType.get(random);
-                //Logger.print("Gotten move!");
-                //Logger.print("Move added: "+ move.name);
+                Logger.print("Gotten move!", true);
+                Logger.print("Move added: "+ move.name, true);
                 theMoves.addMoves(move.name, move.pp, move.damage);    
             }
         }

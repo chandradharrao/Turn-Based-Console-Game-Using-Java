@@ -19,7 +19,7 @@ public class Opponent {
         
         //create opponents team
         myTeam = new Team(db,this.starterIDs);
-        Logger.print("OPPONENT constructor called");
+        Logger.print("OPPONENT constructor called", true);
         //add pokemons to the team
         makeTeam();
     }
@@ -45,7 +45,7 @@ public class Opponent {
         switch(level) {
             case 0:
                 oppPokeID = easyID;
-                Logger.print("Level 0 easy ID pokes assigned");
+                Logger.print("Level 0 easy ID pokes assigned", true);
                 Logger.print(oppPokeID.toString());
                 break;
             case 1:
@@ -63,9 +63,9 @@ public class Opponent {
     private void makeTeam(){
         for(int i=0; i<6; i++){
             myTeam.addPokemon(starterIDs[i]);
-            Logger.print("pokemon with id " + starterIDs[i] + "added");
+            Logger.print("pokemon with id " + starterIDs[i] + "added", true);
         }
-        Logger.print("The pokemon list is" + myTeam.teamSize);
+        Logger.print("The pokemon list is" + myTeam.teamSize, true);
     }
 
     public boolean attackPlayer(Player player){
@@ -103,7 +103,7 @@ public class Opponent {
                 }
             } 
         }
-        Logger.print("foundPokemon Boolean is : " + foundPokemon);
+        Logger.print("foundPokemon Boolean is : " + foundPokemon, true);
         if(!foundPokemon){
             //player wins since opponent has no pokemon with enough PP
             myTeam.currPokemon = -1;

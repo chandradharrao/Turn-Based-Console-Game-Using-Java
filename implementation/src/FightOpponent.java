@@ -18,7 +18,7 @@ public class FightOpponent implements BattleState{
                     battleManager.player.myTeam.equipPokemon(currPoke);
                }catch(Exception e){
                    System.out.println("Enter Move number again!");
-                   Logger.print(""+e);
+                   Logger.print(""+e, true);
                    currPoke = 100;
                }
             }while(currPoke>=6 || currPoke<0);

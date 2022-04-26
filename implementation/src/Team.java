@@ -51,7 +51,7 @@ public class Team {
                 //transfer XP,health from prev pokemon
                 evolvedPoke.XP = poke.getXP();
                 evolvedPoke.health = poke.getHealth();
-                Logger.print("Adding evolved poke to the list: "+evolvedPoke.Name);
+                Logger.print("Adding evolved poke to the list: "+evolvedPoke.Name, true);
                 Logger.print("Added Pkemon: " + evolvedPoke.Name);
                 myPokemons.set(i,evolvedPoke);
             }
@@ -59,7 +59,7 @@ public class Team {
     }
 
     public boolean addPokemon(int i){
-        Logger.print("is m_pokemon list null? "+myPokemons==null?"True":"False");
+        Logger.print("is m_pokemon list null? "+myPokemons==null?"True":"False", true);
 
         if(availablePokemons[i]){
             Pokemon poke = db.getPokemon(i);
