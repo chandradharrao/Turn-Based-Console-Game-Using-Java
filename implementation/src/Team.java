@@ -131,29 +131,12 @@ public class Team {
             //grab damage from amage matrix
             // Logger.print("row index : "+ this.myPokemons.get(this.currPokemon).type);
             // Logger.print("col index : "+ opponentTeam.myPokemons.get(opponentTeam.currPokemon).type);
-            opponentTeam.damage(Battle.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
-            Logger.print(" Damage caused by move is : " + Battle.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
+            opponentTeam.damage(BattleManager.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
+            Logger.print(" Damage caused by move is : " + BattleManager.damageMatrix[this.myPokemons.get(this.currPokemon).type][opponentTeam.myPokemons.get(opponentTeam.currPokemon).type]*(this.myPokemons.get(this.currPokemon).moves.theMoves.get(moveNumber).damage));
         }else{
             System.out.println("Not enough PP :(");
         }
     }
-
-    // //fetch all pokemons in the database avaialble to the user
-    // public void listAvailablePokes(){
-    //     System.out.println("Choose From:");
-    //     String alignmentFormat = "|%-3s|%-10s|%-5s|%-6d|%-3d|%n";
-
-    //     System.out.format("+---+----------+-----+------+---+%n");
-    //     System.out.format("|ID |Name      |Type |Health|XP |%n");
-    //     System.out.format("+---+----------+-----+------+---+%n");
-    //     for(int i = 0;i<availablePokemons.length;i++){
-    //         if(availablePokemons[i]){
-    //             Pokemon poke = db.getPokemon(i);
-    //             System.out.format(alignmentFormat,poke.ID-1,poke.Name,Pokemon.getType(poke.type),poke.health,poke.XP);
-    //         }
-    //     }
-    //     System.out.format("+---+----------+-----+------+---+%n");
-    // }
 
     //check if Team has lost
     public Boolean didTeamLoose(){

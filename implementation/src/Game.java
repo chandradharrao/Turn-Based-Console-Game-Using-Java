@@ -1,13 +1,14 @@
-// import java.io.Console;
-// import java.util.ArrayList;
-// import java.util.List;
+import java.io.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 class Game{
     public static void main(String[] args) {
         Logger.print("GAME STARTED!");
 
-        Battle battle = new Battle();
+        BattleManager battleManager = new BattleManager();
 
-        battle.StartBattle();
+        StartBattle startBattle = new StartBattle();
+        startBattle.doAction(battleManager);
     }
 }
