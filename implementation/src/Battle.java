@@ -51,30 +51,6 @@ public class Battle {
         gameLoop = false;
     }
 
-    public void createTeam(){
-        //Display all the pokemons available to the user
-        View.listAvailablePokes(player.myTeam.availablePokemons,db);
-        
-        // //ask user to choose between displayed pokemon
-        // while(player.myTeam.teamSize<6){
-        //     System.out.println("Enter the Pokemon number");
-        //     int pnum = Integer.parseInt(System.console().readLine());
-
-        //     boolean res = player.myTeam.addPokemon(pnum);
-        //     if(!res){
-        //         System.out.println("Not allowed to choose that pokemon yet!");
-        //     }
-
-        //for testing purposes
-        for(int i=0 ; i<6; i++){
-            player.myTeam.addPokemon(db.starterIDs[i]);
-        }
-        
-             //after choosing 6 pokemons
-            View.displayTeam(player.myTeam);
-        }
-    //}
-
     public void chooseOpponent(){
         View.displayOpponents(allOpponents);
 
@@ -146,7 +122,7 @@ public class Battle {
     public void StartBattle(){
         if(gameStart){
             gameStart= false;
-            this.createTeam();
+            player.createTeam();
         }
         while(gameLoop){
             this.chooseOpponent();
