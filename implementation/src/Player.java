@@ -20,6 +20,22 @@ public class Player {
     }
 
     void playerDetails(){
+        System.out.println("Do you want to load previous save?");
+        char choice = System.console().readLine().charAt(0);
+        if(choice=='Y'||choice=='y'){
+            LoadGame lg = new LoadGame();
+            Player temp = lg.getPlayer();
+            if(temp!=null && temp.name!=null && temp.db!=null){
+                this.name = temp.name;
+                this.db = temp.db;
+                this.myTeam = temp.myTeam;
+                this.myBadges = temp.myBadges;
+            }else{
+               System.out.println("No saved data!"); 
+            }
+        }
+
+        //enter details
         System.out.println("Enter name");
         name = System.console().readLine();
         Logger.print("Name is "+name);
