@@ -13,7 +13,7 @@ Battles between them can be likened to the simple hand game rock-paper-scissors.
 
 <ol>
   <li>To Compile the program</li>
-  > javac *.java
+  > <code>javac *.java</code>
   <li>To execute it, you need the postgreSQL jar file. On mac, the syntax for execution is</li>
   > <code>java -cp /path/to/postgres/jar/file:/path/to/program Game</code>
   <li>On Windows</li>
